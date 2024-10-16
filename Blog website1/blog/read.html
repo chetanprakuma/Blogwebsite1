@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish & Colorful Read More Page</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ff6f91, #ff9671, #ffc75f, #f9f871);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Container */
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        /* Header */
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            color: #444;
+            padding: 20px;
+            background: #ff6f91;
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Section Header */
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        /* Background Section */
+        .background-section {
+            background: url("images/login.jpg") no-repeat center center/cover;
+            height: 350px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Paragraphs */
+        p {
+            font-size: 18px;
+            margin: 15px 20px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Hidden Content */
+        #moreContent {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        /* Button Styles */
+        .read-more-btn {
+            display: inline-block;
+            background-color: #ff9671;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+        }
+        .read-more-btn:hover {
+            background-color: #ff6f91;
+        }
+
+        /* Footer Section */
+        .footer {
+            text-align: center;
+        }
+
+        /* Additional Animations for Button and Hidden Content */
+        #moreContent.show {
+            display: block;
+            opacity: 1;
+        }
+        .read-more-btn:hover {
+            background-color: #ff6f91;
+            transform: scale(1.05);
+        }
+
+        /* Media Query */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            p {
+                font-size: 16px;
+            }
+            h1 {
+                font-size: 30px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Background Image Section -->
+        <div class="background-section"></div>
+
+        <h1>Welcome to My Stylish Page</h1>
+
+        <h2>Introduction</h2>
+        <p>
+            This is a brief introduction to the content of the page. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget justo nec libero egestas elementum.
+        </p>
+
+        <!-- Hidden Content -->
+        <div id="moreContent">
+            <h2>Details</h2>
+            <p>
+                Here is some more detailed content that you can reveal by clicking the "Read More" button. Phasellus sollicitudin est sit amet malesuada fermentum. Fusce at pharetra libero, et posuere mauris. Quisque sit amet magna tortor. Praesent rutrum mi vitae enim tincidunt, ac feugiat elit dapibus.
+            </p>
+            <p>
+                Vivamus sit amet semper velit. Integer aliquet, mauris quis suscipit dignissim, elit urna facilisis turpis, vel tincidunt sapien ligula at libero. Duis venenatis nisi a magna sodales, ac bibendum nunc venenatis.
+            </p>
+        </div>
+
+        <!-- Read More Button -->
+        <div class="footer">
+            <button class="read-more-btn" onclick="toggleContent()">Read More</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleContent() {
+            var moreContent = document.getElementById("moreContent");
+            var btn = document.querySelector(".read-more-btn");
+
+            if (moreContent.classList.contains("show")) {
+                moreContent.classList.remove("show");
+                btn.textContent = "Read More";
+            } else {
+                moreContent.classList.add("show");
+                btn.textContent = "Read Less";
+            }
+        }
+    </script>
+
+</body>
+</html>

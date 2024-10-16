@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup Page</title>
+    <style>
+        /* Common Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 350px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        #loginContainer {
+            background: url("images/login.jpg") no-repeat center center/cover; /* Replace with your login image URL */
+        }
+
+        #signupContainer {
+            background: url("images/login.jpg") no-repeat center center/cover; /* Replace with your signup image URL */
+            display: none; /* Initially hidden */
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #fff; /* Change color for better visibility on background */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff; /* Change color for better visibility on background */
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success-message {
+            color: green;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .switch-link {
+            margin-top: 15px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        .switch-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Form -->
+    <div class="container" id="loginContainer">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <small class="error-message" id="emailError" aria-live="assertive"></small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <small class="error-message" id="passwordError" aria-live="assertive"></small>
+            </div>
+            <button type="button" id="loginButton">Login</button> <!-- Changed to button type -->
+        </form>
+        <div class="switch-link" id="switchToSignup">Don't have an account? Sign up</div>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="container" id="signupContainer">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="signupEmail">Email</label>
+                <input type="email" id="signupEmail" name="signupEmail" required>
+                <small class="error-message" id="signupEmailError" aria-live="assertive"></small>
+            </div>
+            <div class="form-group">
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" name="signupPassword" required>
+                <small class="error-message" id="signupPasswordError" aria-live="assertive"></small>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <small class="error-message" id="confirmPasswordError" aria-live="assertive"></small>
+            </div>
+            <button type="button" id="signupButton">Sign Up</button> <!-- Changed to button type -->
+        </form>
+        <div class="switch-link" id="switchToLogin">Already have an account? Log in</div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Switch between login and signup forms
+        const loginContainer = document.getElementById('loginContainer');
+        const signupContainer = document.getElementById('signupContainer');
+        const switchToSignup = document.getElementById('switchToSignup');
+        const switchToLogin = document.getElementById('switchToLogin');
+
+        switchToSignup.addEventListener('click', () => {
+            loginContainer.style.display = 'none';
+            signupContainer.style.display = 'block';
+        });
+
+        switchToLogin.addEventListener('click', () => {
+            signupContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+        });
+
+        // Login Form Validation
+        document.getElementById('loginButton').addEventListener('click', function () {
+            let valid = true;
+
+            // Clear all error messages
+            document.querySelectorAll('.error-message').forEach(function (error) {
+                error.style.display = 'none';
+                error.textContent = ''; // Clear text content
+            });
+
+            // Validate Email
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                document.getElementById('emailError').style.display = 'block';
+                valid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                document.getElementById('emailError').style.display = 'block';
+                valid = false;
+            }
+
+            // Validate Password
+            const password = document.getElementById('password').value;
+            if (!password) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long';
+                document.getElementById('passwordError').style.display = 'block';
+                valid = false;
+            } else if (password.length < 6) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long';
+                document.getElementById('passwordError').style.display = 'block';
+                valid = false;
+            }
+
+            if (valid) {
+                alert('Login Successful');
+                window.location.href = 'index.html'; // Redirect to home page after login
+            }
+        });
+
+        // Signup Form Validation
+        document.getElementById('signupButton').addEventListener('click', function () {
+            let valid = true;
+
+            // Clear all error messages
+            document.querySelectorAll('.error-message').forEach(function (error) {
+                error.style.display = 'none';
+                error.textContent = ''; // Clear text content
+            });
+
+            // Validate Email
+            const signupEmail = document.getElementById('signupEmail').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!signupEmail) {
+                document.getElementById('signupEmailError').textContent = 'Please enter a valid email address';
+                document.getElementById('signupEmailError').style.display = 'block';
+                valid = false;
+            } else if (!emailPattern.test(signupEmail)) {
+                document.getElementById('signupEmailError').textContent = 'Please enter a valid email address';
+                document.getElementById('signupEmailError').style.display = 'block';
+                valid = false;
+            }
+
+            // Validate Password
+            const signupPassword = document.getElementById('signupPassword').value;
+            if (!signupPassword) {
+                document.getElementById('signupPasswordError').textContent = 'Password is required';
+                document.getElementById('signupPasswordError').style.display = 'block';
+                valid = false;
+            } else if (signupPassword.length < 6) {
+                document.getElementById('signupPasswordError').textContent = 'Password must be at least 6 characters long';
+                document.getElementById('signupPasswordError').style.display = 'block';
+                valid = false;
+            }
+
+            // Confirm Password Match
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (!confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Confirm password is required';
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                valid = false;
+            } else if (confirmPassword !== signupPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                valid = false;
+            }
+
+            if (valid) {
+                alert('Signup Successful');
+                window.location.href = 'login.html'; // Redirect to login page after signup
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact and Help</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* General body styling with background image */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url("images/login.jpg"); /* Replace with a valid background image URL */
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Main container for contact and help sections */
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contact details section */
+        .contact-container {
+            flex: 1;
+            background-image: url("images/login.jpg"); /* Replace with a valid background image URL for contact */
+            background-size: cover;
+            background-position: center;
+            padding: 30px;
+            border-radius: 10px;
+            color: rgb(249, 5, 5);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* Hover effect for the contact container */
+        .contact-container:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-container h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            font-size: 1.3em;
+            margin: 10px 0;
+            color: #020b0c;
+        }
+
+        .contact-info i {
+            color: #0a0ae6;
+            margin-right: 10px;
+        }
+
+        /* Social media hover effect */
+        .social-links a {
+            margin: 0 10px;
+            color: rgb(9, 13, 252);
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #f33409; /* red color on hover */
+            transform: scale(1.2);
+        }
+
+        /* Help form section */
+        .help-container {
+            flex: 1;
+            background-image: url("images/login.jpg"); /* Replace with a valid background image URL for help */
+            background-size: cover;
+            background-position: center;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .help-container h2 {
+            color: #007bff;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .help-container form {
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .help-container input, 
+        .help-container textarea {
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .help-container input:focus, 
+        .help-container textarea:focus {
+            border-color: #007bff;
+        }
+
+        .help-container input[type="submit"] {
+            background: linear-gradient(90deg, #e4b416, #e318b7);
+            color: white;
+            cursor: pointer;
+            border: none;
+            font-size: 1.2em;
+            padding: 15px;
+            border-radius: 50px;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .help-container input[type="submit"]:hover {
+            background: linear-gradient(90deg, #0056b3, #003f7f);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -10px;
+            display: none; /* Initially hide the error */
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Contact Details Section -->
+        <div class="contact-container">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> 123 Help Street, Support City</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> support@helpwebsite.com</p>
+            </div>
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61553946343180"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/alokrajrssb?lang=en"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/bhakti_reels_status/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/dablim-solu%C3%A7%C3%B5es-gr%C3%A1ficas"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <!-- Help Form Section -->
+        <div class="help-container">
+            <h2>Need Help?</h2>
+            <form id="helpForm" action="#" method="post" onsubmit="return handleSubmit();">
+                <input type="text" name="name" id="name" placeholder="Your Name">
+                <span class="error-message" id="nameError">Please enter your name.</span>
+
+                <input type="email" id="email" name="email" placeholder="Your Email">
+                <span class="error-message" id="emailError">Please enter a valid email address.</span>
+
+                <textarea name="message" id="message" rows="5" placeholder="How can we help you?"></textarea>
+                <span class="error-message" id="messageError">Please enter a message.</span>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleSubmit() {
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const messageError = document.getElementById('messageError');
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            let valid = true;
+
+            // Validate name field
+            if (nameInput.value.trim() === '') {
+                nameError.style.display = 'block'; // Show error message
+                valid = false;
+            } else {
+                nameError.style.display = 'none'; // Hide error message if valid
+            }
+
+            // Validate email field
+            if (!emailRegex.test(emailInput.value)) {
+                emailError.style.display = 'block'; // Show error message
+                valid = false;
+            } else {
+                emailError.style.display = 'none'; // Hide error message if valid
+            }
+
+            // Validate message field
+            if (messageInput.value.trim() === '') {
+                messageError.style.display = 'block'; // Show error message
+                valid = false;
+            } else {
+                messageError.style.display = 'none'; // Hide error message if valid
+            }
+
+            // Prevent form submission if validation fails
+            if (!valid) {
+                return false;
+            }
+
+            // Display a success alert
+            alert('Thank you for reaching out! We will get back to you soon.');
+
+            // Reset the form fields
+            document.getElementById('helpForm').reset();
+
+            // Redirect to the index page
+            window.location.href = 'index.html'; // Change 'index.html' to the actual path of your index page
+
+            return false; // Prevent form from submitting to the server
+        }
+    </script>
+
+    <!-- Link to FontAwesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

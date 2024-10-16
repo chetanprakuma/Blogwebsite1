@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .meta-info {
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .meta-info span {
+            margin-right: 10px;
+        }
+
+        .blog-content {
+            line-height: 1.6;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+        }
+
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        .comments-section {
+            margin-top: 40px;
+        }
+
+        .comments-section h3 {
+            margin-bottom: 20px;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+        }
+
+        .comment p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        .comment .author {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .comment .date {
+            color: #777;
+            font-size: 0.8em;
+        }
+
+        .add-comment {
+            margin-top: 30px;
+        }
+
+        .add-comment textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .add-comment button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .add-comment button:hover {
+            background-color: #218838;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Blog Title and Meta Info -->
+        <img src="/images/ph2.jpeg" alt="" style="width: 100%; height: 50vh;">
+        <h1>The Beauty of Nature: A Reflection</h1>
+        <div class="meta-info">
+            <span>By <strong>John Doe</strong></span> | 
+            <span>Published on <strong>October 5, 2024</strong></span>
+        </div>
+
+        <!-- Blog Content -->
+        <div class="blog-content">
+            <p>Nature, in the broadest sense, is the natural, physical, material world or universe. "Nature" can refer to the phenomena of the physical world, and also to life in general. Nature has provided us with countless resources that we rely on every day.</p>
+            <img src="nature-image.jpg" alt="Beautiful nature landscape">
+            <p>The beauty of nature lies in its simplicity, its complexity, and its diversity. Whether it’s the majesty of towering mountains or the delicate intricacy of a butterfly's wings, nature never fails to amaze. This blog explores the deep connection we have with the natural world and how it shapes our existence.</p>
+
+            <p>In today’s fast-paced, technology-driven world, it is easy to forget the importance of taking time to appreciate the beauty around us. Let’s take a journey through some of nature’s most stunning landscapes and explore the peace and serenity they offer.</p>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <h3>Comments</h3>
+            <div class="comment">
+                <div class="author">Jane Smith</div>
+                <div class="date">October 5, 2024</div>
+                <p>This blog truly captures the essence of nature's beauty. Thank you for this wonderful read!</p>
+            </div>
+
+            <div class="comment">
+                <div class="author">Robert Wilson</div>
+                <div class="date">October 4, 2024</div>
+                <p>I couldn’t agree more with your reflections. Nature is a source of peace and inspiration for me too.</p>
+            </div>
+        </div>
+
+        <!-- Add a Comment Form -->
+        <div class="add-comment">
+            <h3>Add a Comment</h3>
+            <textarea id="commentInput" rows="5" placeholder="Leave a comment..."></textarea>
+            <div class="error-message" id="commentError" style="display: none;"></div>
+            <button id="submitComment">Submit Comment</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Comment Validation
+        document.getElementById('submitComment').addEventListener('click', function () {
+            const commentInput = document.getElementById('commentInput');
+            const commentError = document.getElementById('commentError');
+            const commentText = commentInput.value.trim(); // Remove whitespace
+
+            // Clear previous error message
+            commentError.style.display = 'none';
+            commentError.textContent = '';
+
+            // Validate the comment
+            if (commentText === '') {
+                commentError.textContent = 'Comment cannot be empty!';
+                commentError.style.display = 'block';
+                return; // Stop further execution if there's an error
+            }
+
+            if (commentText.length > 200) { // Optional: Limit comment length
+                commentError.textContent = 'Comment cannot exceed 200 characters!';
+                commentError.style.display = 'block';
+                return;
+            }
+
+            // If valid, add the comment to the comments section (for demonstration)
+            const newComment = document.createElement('div');
+            newComment.classList.add('comment');
+            newComment.innerHTML = `
+                <div class="author">You</div>
+                <div class="date">${new Date().toLocaleDateString()}</div>
+                <p>${commentText}</p>
+            `;
+
+            document.querySelector('.comments-section').appendChild(newComment);
+
+            // Clear the textarea after submission
+            commentInput.value = '';
+        });
+    </script>
+</body>
+</html>
